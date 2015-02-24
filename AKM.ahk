@@ -2,7 +2,7 @@
 SetBatchLines, -1
 Menu, Tray, Icon, AKM.ico
 
-; #Include Functions.ahk
+#Include Functions.ahk
 
 ; Initialize GUI
 ScrollBack := [], Arrow := 0
