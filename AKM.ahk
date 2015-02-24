@@ -1,7 +1,8 @@
 #NoEnv
 SetBatchLines, -1
-Menu, Tray, Icon, AKM.ico
+Menu, Tray, Icon, %A_ScriptDir%\AKM.ico
 
+#Include %A_ScriptDir%
 #Include Functions.ahk
 #Include *i Custom.ahk
 
