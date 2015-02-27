@@ -72,6 +72,16 @@ Top()
 	WinSet, AlwaysOnTop, Toggle, A
 }
 
+ddg(Query)
+{
+	static BaseUrl := "https://duckduckgo.com/?q=\"
+	Http := ComObjCreate("WinHttp.WinHttpRequest.5.1")
+	Http.Open("GET", BaseUrl . UriEncode(Query))
+	Http.Send()
+	RegExMatch(Http.ResponseText, "uddg=([^']+)", Match)
+	return UriDecode(Match1)
+}
+
 UriEncode(Uri, RE="[0-9A-Za-z]") {
 	VarSetCapacity(Var, StrPut(Uri, "UTF-8"), 0), StrPut(Uri, &Var, "UTF-8")
 	While Code := NumGet(Var, A_Index - 1, "UChar")
