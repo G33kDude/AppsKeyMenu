@@ -109,7 +109,7 @@ Base64_Encode(In, Encoding="UTF-8")
 	InLen := StrPut(In, &Bin, Encoding) - 1
 	DllCall("Crypt32.dll\CryptBinaryToString", "Ptr", &Bin
 	, "UInt", InLen, "UInt", 0x40000001, "Ptr", 0, "UInt*", OutLen)
-	VarSetCapacity(Out, OutLen * (1+A_IsUnicode))
+	VarSetCapacity(Out, OutLen * (A_IsUnicode?2:1))
 	DllCall("Crypt32.dll\CryptBinaryToString", "Ptr", &Bin
 	, "UInt", InLen, "UInt", 0x40000001, "Str", Out, "UInt*", OutLen)
 	return Out
@@ -124,5 +124,5 @@ Base64_Decode(In, Encoding="UTF-8")
 	DllCall("Crypt32.dll\CryptStringToBinary", "Ptr", &In
 	, "UInt", StrLen(In), "UInt", 0x1, "Str", Out
 	, "UInt*", OutLen, "Ptr", 0, "Ptr", 0)
-	return StrGet(&Out, OutLen, "UTF-8")
+	return StrGet(&Out, OutLen, Encoding)
 }
